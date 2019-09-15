@@ -1,11 +1,7 @@
 from django.core.management.base import BaseCommand, CommandError
 from django.db.models import Q
-from datacenter.models import Commendation
-from datacenter.models import Lesson
 from datacenter.models import Schoolkid
 from datacenter.models import Mark
-from datacenter.models import Subject
-from datacenter.models import Chastisement
 
 
 class Command(BaseCommand):
