@@ -32,7 +32,7 @@ class Command(BaseCommand):
         parser.add_argument("subject", nargs="+", help="Учебный предмет")
 
     def handle(self, *args, **options):
-        pupil, name = get_pupil(**options)
+        pupil = get_pupil(**options)
         subject = " ".join(options["subject"]).capitalize()
         try:
             lesson = Lesson.objects.filter(
@@ -51,4 +51,6 @@ class Command(BaseCommand):
             teacher=lesson.teacher,
         )
 
-        self.stdout.write(self.style.SUCCESS(f"Похвала ученику {name} добавлена"))
+        self.stdout.write(
+            self.style.SUCCESS(f"Похвала ученику {pupil.full_name} добавлена")
+        )

@@ -11,7 +11,9 @@ class Command(BaseCommand):
         parser.add_argument("full_name", nargs="+", help="Фамилия и имя ученика")
 
     def handle(self, *args, **options):
-        pupil, name = get_pupil(**options)
+        pupil = get_pupil(**options)
         Chastisement.objects.filter(schoolkid=pupil).delete()
 
-        self.stdout.write(self.style.SUCCESS(f"Замечания ученику {name} удалены"))
+        self.stdout.write(
+            self.style.SUCCESS(f"Замечания ученику {pupil.full_name} удалены")
+        )

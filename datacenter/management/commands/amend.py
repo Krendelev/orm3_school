@@ -11,8 +11,10 @@ class Command(BaseCommand):
         parser.add_argument("full_name", nargs="+", help="Фамилия и имя ученика")
 
     def handle(self, *args, **options):
-        pupil, name = get_pupil(**options)
+        pupil = get_pupil(**options)
         bad_marks = Mark.objects.filter(schoolkid=pupil, points__lte=3)
         bad_marks.update(points=5)
 
-        self.stdout.write(self.style.SUCCESS(f"Оценки ученика {name} исправлены"))
+        self.stdout.write(
+            self.style.SUCCESS(f"Оценки ученика {pupil.full_name} исправлены")
+        )

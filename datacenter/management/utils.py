@@ -13,4 +13,4 @@ def get_pupil(**options):
         raise CommandError(
             f"Найдено несколько учеников с именем {name}. Уточните запрос"
         )
-    return pupil, name
+    return pupil
